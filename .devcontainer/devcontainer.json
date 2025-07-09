@@ -1,11 +1,5 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {}
-    "runArgs": ["--device=/dev/net/tun"],
-    "features": {
-        // ...
-        "ghcr.io/tailscale/codespace/tailscale": {}
-        // ...
-    }
-  
+  "features": {"ghcr.io/tailscale/codespace/tailscale":}
+  "runArgs": ["--device=/dev/net/tun"],
 }
