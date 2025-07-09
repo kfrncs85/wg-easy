@@ -1,5 +1,19 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {"ghcr.io/tailscale/codespace/tailscale":}
-  "runArgs": ["--device=/dev/net/tun"],
+    "image": "mcr.microsoft.com/devcontainers/universal:latest",
+    "features": {
+        "ghcr.io/tailscale/codespace/tailscale": {
+            "version": "latest"
+        }
+    },
+    "runArgs": [
+        "--device=/dev/net/tun"
+    ],
+    "containerEnv": {
+        "TS_AUTHKEY": "${localEnv:TS_AUTH_KEY}",
+        "TS_ACCEPT_ROUTES": "true"
+    },
+    "mounts": [
+        "source=tailscale-${devcontainerId},target=/var/lib/tailscale,type=volume"
+    ],
+    "postCreateCommand": "sudo tailscale up --accept-routes --auth-key=${TS_AUTHKEY}"
 }
